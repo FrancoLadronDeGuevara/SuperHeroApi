@@ -71,5 +71,30 @@
         <!-- Aquí se van a inyectar los heroes con javascript-->
       </div>
     </main>
+
+    <!-- Paginación -->
+    <section class="pagination-section">
+      <div class="pagination-controls" id="paginationControls">
+        <button id="prevBtn" class="btn" disabled>
+          <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+        <span id="pageInfo" class="page-info">Página 1 de 1</span>
+        <button id="nextBtn" class="btn" disabled>
+          Siguiente <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Modal de Detalles -->
+    <div class="modal" id="heroModal">
+      <div class="modal-content glassmorphism">
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+        <div class="modal-body" id="modalBody">
+          <!-- Data modal inyectado aquí -->
+        </div>
+      </div>
+    </div>
+
+    <script src="src/js/main.js"></script>
   </body>
 </html>
