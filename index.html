@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <title>SuperHeroes | Tus Heroes favoritos</title>
+  </head>
+  <body>
+    <!-- BANNER PRINCIPAL-->
+    <header class="hero-banner">
+      <div class="banner-content">
+        <h1 class="gradient-text">Buscador API SuperHeroes</h1>
+        <p>Descubre datos increíbles sobre tus heroes y villanos favoritos</p>
+      </div>
+      <div class="glow-bg"></div>
+    </header>
+
+    <!-- FILTROS Y BUSQUEDA -->
+    <section class="controls-section glassmorphism">
+      <div class="controls-container">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar superheroe..."
+          />
+        </div>
+        <div class="filter-group">
+          <select id="genderFilter">
+            <option value="all">Todos los Géneros</option>
+            <option value="male">Masculino</option>
+            <option value="female">Femenino</option>
+            <option value="-">Desconocido</option>
+          </select>
+          <select id="alignmentFilter">
+            <option value="all">Todos (Buenos y Malos)</option>
+            <option value="good">Buenos (Heroes)</option>
+            <option value="bad">Malos (Villanos)</option>
+            <option value="neutral">Neutral</option>
+            <option value="-">Desconocido</option>
+          </select>
+          <select id="publisherFilter">
+            <option value="all">Todas las editoriales</option>
+            <option value="marvel comics">Marvel Comics</option>
+            <option value="dc comics">DC Comics</option>
+            <option value="dark horse comics">Dark Horse</option>
+            <!-- Otros se van a agregar mediante JS-->
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-content">
+      <div class="loading" id="loader">
+        <div class="spinner"></div>
+        <p>Cargando superheroes...</p>
+      </div>
+      <div class="heroes-grid" id="heroesGrid">
+        <!-- Aquí se van a inyectar los heroes con javascript-->
+      </div>
+    </main>
+  </body>
+</html>
