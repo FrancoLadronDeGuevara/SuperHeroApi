@@ -3,7 +3,7 @@
   --card-bg: rgba(22, 27, 34, 0.7);
   --primary-color: #3b82f6;
   --accent-color: #f43f5e;
-  --text-primary: #dfe9f2;
+  --text-primary: #e6edf3;
   --text-secondary: #8b949e;
   --good-color: #10b981;
   --bad-color: #ef4444;
@@ -22,9 +22,10 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: var(--font-family);
-  min-height: 100dvh;
+  min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  padding-bottom: 40px;
 }
 
 body::before {
@@ -43,6 +44,22 @@ body::before {
   pointer-events: none;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Banner */
 .hero-banner {
   position: relative;
   padding: 100px 20px;
@@ -57,25 +74,25 @@ body::before {
   transform: translate(-50%, -50%);
   width: 300px;
   height: 300px;
-  background-color: var(--accent-color);
-  z-index: 0;
+  background: var(--accent-color);
   filter: blur(150px);
   opacity: 0.3;
+  z-index: 0;
 }
 
 .hero-banner .banner-content {
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 
 .gradient-text {
   font-size: 3.5rem;
-  font-weight: bolder;
+  font-weight: 800;
   background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-  margin-bottom: 20px;
-  letter-spacing: -1px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
 }
 
 .banner-content p {
@@ -85,13 +102,16 @@ body::before {
   margin: 0 auto;
 }
 
+/* Glassmorphism */
 .glassmorphism {
-  background-color: var(--card-bg);
+  background: var(--card-bg);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px 0 #00000030;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
+/* Controls */
 .controls-section {
   max-width: 1200px;
   margin: -30px auto 40px;
@@ -126,11 +146,12 @@ body::before {
 .search-box input {
   width: 100%;
   padding: 12px 15px 12px 45px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   color: var(--text-primary);
   font-family: var(--font-family);
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
@@ -148,7 +169,7 @@ body::before {
 
 select {
   padding: 12px 15px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   color: var(--text-primary);
@@ -168,12 +189,12 @@ select:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
-
 select option {
   background-color: var(--bg-color);
   color: var(--text-primary);
 }
 
+/* Grid Main Content */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -187,6 +208,7 @@ select option {
   gap: 30px;
 }
 
+/* Card */
 .hero-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -271,6 +293,7 @@ select option {
   color: var(--text-secondary);
 }
 
+/* Pagination */
 .pagination-section {
   max-width: 1200px;
   margin: 50px auto 20px;
@@ -323,6 +346,7 @@ select option {
   text-align: center;
 }
 
+/* Loader */
 .loading {
   display: none;
   flex-direction: column;
@@ -338,8 +362,8 @@ select option {
   border: 4px solid var(--border-color);
   border-top-color: var(--primary-color);
   border-radius: 50%;
-  margin-bottom: 20px;
   animation: spin 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite;
+  margin-bottom: 20px;
 }
 
 @keyframes spin {
@@ -348,6 +372,7 @@ select option {
   }
 }
 
+/* Modal */
 .modal {
   display: none;
   position: fixed;
