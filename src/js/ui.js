@@ -1,13 +1,12 @@
 export function showLoader(show) {
-  const $loader = document.getElementById("loader");
-  const $gridHeroes = document.getElementById("heroesGrid");
-
+  const loader = document.getElementById("loader");
+  const grid = document.getElementById("heroesGrid");
   if (show) {
-    $loader.style.display = "flex";
-    $gridHeroes.style.display = "none";
+    loader.style.display = "flex";
+    grid.style.display = "none";
   } else {
-    $loader.style.display = "none";
-    $gridHeroes.style.display = "grid";
+    loader.style.display = "none";
+    grid.style.display = "grid";
   }
 }
 
@@ -17,6 +16,12 @@ function getAlignmentClass(alignment) {
   if (align === "good") return "good";
   if (align === "bad") return "bad";
   return "neutral";
+}
+
+function getStatColor(value) {
+  if (value > 80) return "var(--accent-color)";
+  if (value > 50) return "var(--primary-color)";
+  return "var(--neutral-color)";
 }
 
 export function renderHeroes(heroes, container, openModalFn) {
@@ -58,6 +63,67 @@ export function renderHeroes(heroes, container, openModalFn) {
     card.addEventListener("click", () => openModalFn(hero));
     container.appendChild(card);
   });
+}
+
+export function updatePagination(currentState, uiElements) {
+  const { prevBtn, nextBtn, pageInfo } = uiElements;
+  const totalPages = currentState.getTotalPages();
+
+  pageInfo.textContent = `Página ${currentState.currentPage} de ${totalPages}`;
+
+  prevBtn.disabled = currentState.currentPage === 1;
+  nextBtn.disabled =
+    currentState.currentPage === totalPages || totalPages === 0;
+}
+
+export function populatePublishers(heroes, selectElement) {
+  const publishers = new Set();
+  heroes.forEach((h) => {
+    if (
+      h.biography?.publisher &&
+      h.biography.publisher !== "-" &&
+      h.biography.publisher !== "null"
+    ) {
+      publishers.add(h.biography.publisher);
+    }
+  });
+
+  const sortedPublishers = Array.from(publishers).sort();
+
+  // Clear existings except 'all'
+  selectElement.innerHTML =
+    '<option value="all">Todas las Editoriales</option>';
+
+  sortedPublishers.forEach((pub) => {
+    const option = document.createElement("option");
+    option.value = pub.toLowerCase();
+    option.textContent = pub;
+    selectElement.appendChild(option);
+  });
+}
+
+let modalElement = null;
+
+export function initModal(modalId, closeBtnId) {
+  modalElement = document.getElementById(modalId);
+  const closeBtn = document.getElementById(closeBtnId);
+
+  if (!modalElement || !closeBtn) return;
+
+  closeBtn.addEventListener("click", closeModal);
+  modalElement.addEventListener("click", (e) => {
+    if (e.target === modalElement) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalElement.classList.contains("active")) {
+      closeModal();
+    }
+  });
+}
+
+function closeModal() {
+  if (modalElement) modalElement.classList.remove("active");
 }
 
 export function openHeroModal(hero) {
